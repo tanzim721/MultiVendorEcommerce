@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-6">
                     <div class="forgot-password">
-                        <a href="forgot-password.html">Forgot Password</a>
+                        <a href="{{ route('admin.forgot-password') }}">Forgot Password</a>
                     </div>
                 </div>
             </div>
