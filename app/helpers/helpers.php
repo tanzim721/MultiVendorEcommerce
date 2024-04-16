@@ -21,7 +21,7 @@ if( !function_exists('sendEmail') ){
         $mail->setFrom($mailConfig['mail_from_email'],$mailConfig['mail_from_name']);
         $mail->addAddress($mailConfig['mail_recipient_email'],$mailConfig['mail_recipient_name']);
         $mail->isHTML(true);
-        // $mail->Subject = $mailConfig['mail_subject'];
+        $mail->Subject = $mailConfig['mail_subject'];
         $mail->Body = $mailConfig['mail_body'];
         if($mail->send()){
             return true;

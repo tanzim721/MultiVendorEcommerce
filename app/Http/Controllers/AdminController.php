@@ -69,7 +69,7 @@ class AdminController extends Controller
 
         // general token 
         $token = base64_encode(Str::random(64));
-        
+
         // Check if there is on existing reset password token 
         $oldToken = DB::table('password_reset_tokens')
                         ->where(['email'=>$request->email,'guard'=>constGuards::ADMIN])
@@ -103,7 +103,7 @@ class AdminController extends Controller
             'mail_from_name'=>env('NAME_FROM_ADDRESS'),
             'mail_recipient_email'=>$admin->email,
             'mail_recipient_name'=>$admin->name,
-            'email_subject'=>'Reset password',
+            'mail_subject'=>'Reset password',
             'mail_body'=>$mail_body
         );
 
