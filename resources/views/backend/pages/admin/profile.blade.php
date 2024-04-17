@@ -24,8 +24,9 @@
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
         <div class="pd-20 card-box height-100-p">
             <div class="profile-photo">
-                <a href="" class="edit-avatar"><i class="fa fa-pencil"></i></a>
+                <a href="javascript:;" onclick="event.preventDefault(); document.getElementById('adminProfilePictureFile').click();" class="edit-avatar"><i class="fa fa-pencil"></i></a>
                 <img src="{{ $admin->picture }}" alt="" class="avatar-photo">
+                <input type="file" name="adminProfilePictureFile" id="adminProfilePictureFile" class="d-none" style="opacity:0">
                 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -65,5 +66,22 @@
             $('#adminProfileName').html(event.detail.adminName);
             $('#adminProfileEmail').html(event.detail.adminEmail);
         });
+
+        $('input[type="file"][name="adminProfilePictureFile"][id="adminProfilePictureFile"]').ijaboCropTool({
+          preview : '#adminProfilePictureFile',
+          setRatio:1,
+          allowedExtensions: ['jpg', 'jpeg','png'],
+          buttonsText:['CROP','QUIT'],
+          buttonsColor:['#30bf7d','#ee5155', -15],
+          processUrl:'{{ route("admin.change-profile-picture") }}',
+          withCSRF:['_token','{{ csrf_token() }}'],
+          onSuccess:function(message, element, status){
+            alert(message);
+          },
+          onError:function(message, element, status){
+            alert(message);
+          }
+       });
+
     </script>
 @endpush

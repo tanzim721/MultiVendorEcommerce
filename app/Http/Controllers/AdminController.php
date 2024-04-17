@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -186,6 +187,29 @@ class AdminController extends Controller
             $admin = Admin::findOrFail(auth()->id());
         }
         return view('backend.pages.admin.profile', compact('admin'));
+    }
+
+
+    public function changeProfilePicture(Request $request){
+        $admin = Admin::findOrFail(auth('admin')->id());
+        $path = 'images/users/admin/';
+        $file = $request->file('adminProfilePictureFile');
+        $old_picture = $admin->getAttributes()['picture'];
+        $file_path = $path.$old_picture;
+        $filename = 'ADMIN_IMG_'.rand(2,1000).$admin->id.time().uniqid().'.jpg';
+
+        $upload = $file->move(public_path($path),$filename);
+
+        if($upload){
+            if( $old_picture != null && File::exists(public_path($path.$old_picture)) ){
+                File::delete(public_path($path.$old_picture));
+            }
+            $admin->update(['picture'=>$filename]);
+            return response()->json(['status'=>1,'msg'=>'Your profile picture has been successfully updated.']);
+        }
+        else{
+            return response()->json(['status'=>0,'msg'=>'Something went wrong.']);
+        }
     }
 }
 

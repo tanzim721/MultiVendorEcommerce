@@ -58,6 +58,7 @@
 			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
 		</script>
 		<!-- End Google Tag Manager -->
+		<link rel="stylesheet" href="{{asset('extra-assets/CropTool/ijaboCropTool.min.css')}}">
         @livewireStyles
         @stack('stylesheets')
 
@@ -521,7 +522,7 @@
                 });
             }
         </script>
-        
+        <script src="{{asset('extra-assets/CropTool/ijaboCropTool.min.js')}}"></script>
         @livewireScripts
 		@stack('scripts')
 	</body>
