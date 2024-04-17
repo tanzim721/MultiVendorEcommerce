@@ -13,7 +13,7 @@
                 <!-- Timeline Tab start -->
                 <div class="tab-pane fade {{ $tab == 'personal_details' ? 'active show':'' }}" id="personal_details" role="tabpanel">
                     <div class="pd-20">
-                        <form action="">
+                        <form wire:submit.prevent='updateAdminPersonalDetails()'>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit">Save changes</button>
+                            <button type="submit" class="btn btn-success">Save changes</button>
                         </form> 
                     </div>
                 </div>

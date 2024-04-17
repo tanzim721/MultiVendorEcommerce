@@ -57,3 +57,13 @@
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        window.addEventListener('updateAdminInfo', function(event){
+            $('#adminProfileName').html(event.detail.adminName);
+            $('#adminProfileEmail').html(event.detail.adminEmail);
+        });
+    </script>
+@endpush
