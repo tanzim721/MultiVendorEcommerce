@@ -42,7 +42,7 @@
             </div>
             @error('password')
                 <div class="d-block text-danger" style="margin-top:-25; margin-bottom:15px;">
-                    {{ $message }}
+                    {{ $message }}              
                 </div>
             @enderror
             <div class="row pb-30">

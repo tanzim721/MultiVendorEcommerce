@@ -78,14 +78,13 @@
 		</script>
 		<!-- End Google Tag Manager -->
 
+        @livewireStyles
         @stack('stylesheets')
 
 	</head>
 	<body class="login-page">
 		<div class="login-header box-shadow">
-			<div
-				class="container-fluid d-flex justify-content-between align-items-center"
-			>
+			<div class="container-fluid d-flex justify-content-between align-items-center">
 				<div class="brand-logo">
 					<a href="login.html">
 						<img src="{{asset('backend/vendors/images/deskapp-logo.svg')}}" alt="" />
@@ -93,14 +92,14 @@
 				</div>
 				<div class="login-menu">
 					<ul>
-						<li><a href="register.html">Register</a></li>
+                        @if ( !Route::is('admin.*') )
+    						<li><a href="register.html">Register</a></li>
+                        @endif 
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div
-			class="login-wrap d-flex align-items-center flex-wrap justify-content-center"
-		>
+		<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-6 col-lg-7">
@@ -117,7 +116,17 @@
 		<script src="backend/vendors/scripts/script.min.js"></script>
 		<script src="backend/vendors/scripts/process.js"></script>
 		<script src="backend/vendors/scripts/layout-settings.js"></script>
-		@stack('scripts')
         
+        <!-- for fire-fox when admin login to home page and back to login page then return to login home page...   -->
+        <script>
+            if(navigator.userAgent.indexOf("Firefox") != -1){
+                histry.pushState(null, null, document.URL);
+                window.addEventListener('popstate', function(){
+                    histroy.pushState(null, null, document.URL);
+                });
+            }
+        </script>
+        @livewireScripts
+		@stack('scripts')
 	</body>
 </html>
