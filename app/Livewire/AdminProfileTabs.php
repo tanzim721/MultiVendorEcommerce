@@ -66,11 +66,31 @@ class AdminProfileTabs extends Component
             'password'=>Hash::make($this->new_password)
         ]);
         if($query){
+            // send email to notify admin.... 
+            $_admin = Admin::findOrFail($this->admin_id);
+            $data = array(
+                'admin'=>$_admin,
+                'new_password'=>$this->new_password
+            );
+
+            $mail_body = view('email-templates.admin-reset-email-template',$data)->render();
+
+            $mailConfig = array(
+                'mail_from_email'=>env('EMAIL_FROM_ADDRESS'),
+                'mail_from_name'=>env('EMAIL_FROM_NAME'),
+                'mail_recipient_email'=>$_admin->email,
+                'mail_recipient_name'=>$_admin->name,
+                'mail_subject'=>'Password change',
+                'mail_body'=>$mail_body
+            );
+            sendEmail($mailConfig);
             $this->current_password = $this->new_password = $this->new_password_confirmation = null;
-            $this->showToastr('success','Password successfully changed.');
+            // $this->showToastr('success','Password successfully changed.');
+            // alert('ok');
         }
         else{
-            $this->showToastr('error','Something went worng.');
+            // $this->showToastr('error','Something went worng.');
+            // alert('not ok');
         }
     }
     public function showToastr($type, $message){

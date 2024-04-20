@@ -435,7 +435,7 @@
 					<ul id="accordion-menu">
                         @if(Route::is('admin.*'))
                             <li class="dropdown">
-                                <a href="{{ route('admin.home') }}" class="dropdown-toggle">
+                                <a href="{{ route('admin.home') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.home') ? 'active' : '' }}">
                                     <span class="micon fa fa-home"></span>
                                     <span class="mtext">Home</span>
                                 </a>
@@ -453,7 +453,7 @@
                                 <div class="sidebar-small-cap">Setting</div>
                             </li>
                             <li>
-                                <a href="{{ route('admin.profile')}}" class="dropdown-toggle no-arrow">
+                                <a href="{{ route('admin.profile')}}" class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }}">
                                     <span class="micon fa fa-user"></span>
                                     <span class="mtext">Profile</span>
                                 </a>
