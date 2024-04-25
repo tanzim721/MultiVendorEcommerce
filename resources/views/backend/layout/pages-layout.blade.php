@@ -458,6 +458,12 @@
                                     <span class="mtext">Profile</span>
                                 </a>
                             </li>
+							<li>
+                                <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
+                                    <span class="micon icon-copy fi-widget"></span>
+                                    <span class="mtext">Settings</span>
+                                </a>
+                            </li>
                         @else 
                             <li class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle">

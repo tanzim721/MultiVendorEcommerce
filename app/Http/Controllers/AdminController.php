@@ -182,11 +182,10 @@ class AdminController extends Controller
     }
 
     public function profileView(Request $request){
-        $data = Admin::get();
+        $admin = null;
         if(Auth::guard('admin')->check() ){
             $admin = Admin::findOrFail(auth()->id());
         }
-        dd($data);
         return view('backend.pages.admin.profile', compact('admin'));
     }
 
